@@ -1,0 +1,2287 @@
+local Atlas = loadstring(game:HttpGet("https://rd2glory.com/Atlas.lua"))()
+
+
+local UI = Atlas.new({
+    Name = "Royalty Studios | Mystic Falls"; -- script name (required)
+    ConfigFolder = "MyScript"; -- folder name to save configs to, set this to nil if you want to disable configs saving
+    Credit = "Made By 1NTERNETROYALTY"; -- text to appear if player presses the "i" button on their UI (optional)
+    Color = Color3.fromRGB(255,192,203); -- theme color for UI (required)
+    Bind = "LeftControl"; -- keybind for toggling the UI, must be a valid KeyCode name
+    -- Atlas Loader:
+    UseLoader = false; -- whether to use Atlas Loader or not, if set to false than CheckKey and Discord are ignored
+    FullName = "Royalty Studios | Mystic Falls"; -- works if UseLoader is set to true, can be same as Name argument, shown on loader frame
+    CheckKey = function(inputtedKey) -- works if UseLoader is set to true, where inputtedKey is the key inputted by the player
+        return inputtedKey=="key1234"
+    end;
+    Discord = "https://discord.gg/Du3mhAqUG4"; -- works if UseLoader is set to true, will be copied to clipboard if player presses "Copy Invite" button
+})
+
+local MyPage = UI:CreatePage("Main") -- creates a page
+local MyPage2 = UI:CreatePage("Autoglitch")
+local MyPage3 = UI:CreatePage("Factions")
+local MyPage4 = UI:CreatePage("Keybinds")
+local MyPage5 = UI:CreatePage("Infinite Channel")
+local MyPage6 = UI:CreatePage("Compulsion Remove")
+local MyPage7 = UI:CreatePage("Witch")
+local MyPage8 = UI:CreatePage("Vampire")
+local MyPage9 = UI:CreatePage("Heretic")
+local MyPage10 = UI:CreatePage("Werewolf")
+
+
+
+local MySection = MyPage:CreateSection("Main")
+local MySection2 = MyPage2:CreateSection("Autoglitch")
+local MySection3 = MyPage3:CreateSection("Factions")
+local MySection4 = MyPage4:CreateSection("Keybinds")
+local MySection5 = MyPage5:CreateSection("Infinite Channel")
+local MySection6 = MyPage6:CreateSection("Compulsion Remove")
+local MySection7 = MyPage7:CreateSection("Witch")
+local MySection8 = MyPage8:CreateSection("Vampire")
+local MySection9 = MyPage9:CreateSection("Heretic")
+local MySection10 = MyPage10:CreateSection("Werewolf")
+
+
+MySection:CreateButton({
+    Name = "Infinte Yield"; -- required: name of element
+    Callback = function() -- required: function to be called when button is pressed
+        loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()
+    end
+})
+
+MySection:CreateButton({
+    Name = "DarkDex"; -- required: name of element
+    Callback = function() -- required: function to be called when button is pressed
+    -- Cloneref support (adds support for JJsploit/Temple/Electron and other sploits that don't have cloneref or really shit versions of it.)
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/Babyhamsta/RBLX_Scripts/main/Universal/CloneRef.lua", true))()
+
+    -- Dex Bypasses
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/Babyhamsta/RBLX_Scripts/main/Universal/Bypasses.lua", true))()
+    
+    -- Dex with CloneRef Support (made as global)
+    getgenv().Bypassed_Dex = game:GetObjects("rbxassetid://9352453730")[1]
+    
+    local charset = {}
+    for i = 48,  57 do table.insert(charset, string.char(i)) end
+    for i = 65,  90 do table.insert(charset, string.char(i)) end
+    for i = 97, 122 do table.insert(charset, string.char(i)) end
+    function RandomCharacters(length)
+        if length > 0 then
+            return RandomCharacters(length - 1) .. charset[math.random(1, #charset)]
+        else
+            return ""
+        end
+    end
+    
+    Bypassed_Dex.Name = RandomCharacters(math.random(5, 20))
+    if gethui then
+        Bypassed_Dex.Parent = gethui();
+    else
+        Bypassed_Dex.Parent = cloneref(game:GetService("CoreGui"))
+    end
+    
+    local function Load(Obj, Url)
+        local function GiveOwnGlobals(Func, Script)
+            local Fenv = {}
+            local RealFenv = {script = Script}
+            local FenvMt = {}
+            function FenvMt:__index(b)
+                if RealFenv[b] == nil then
+                    return getfenv()[b]
+                else
+                    return RealFenv[b]
+                end
+            end
+            function FenvMt:__newindex(b, c)
+                if RealFenv[b] == nil then
+                    getfenv()[b] = c
+                else
+                    RealFenv[b] = c
+                end
+            end
+            setmetatable(Fenv, FenvMt)
+            setfenv(Func, Fenv)
+            return Func
+        end
+        
+        local function LoadScripts(Script)
+            if Script.ClassName == "Script" or Script.ClassName == "LocalScript" then
+                task.spawn(GiveOwnGlobals(loadstring(Script.Source, "=" .. Script:GetFullName()), Script))
+            end
+            for _,v in ipairs(Script:GetChildren()) do
+                LoadScripts(v)
+            end
+        end
+        
+        LoadScripts(Obj)
+    end
+    
+    Load(Bypassed_Dex)
+    end
+})
+
+MySection9:CreateButton({
+    Name = "Siphon and Run Normally"; -- required: name of element
+    Callback = function() -- required: function to be called when button is pressed
+        local Player = game.Players.LocalPlayer.Character
+        game:GetService("RunService").RenderStepped:Connect(function()
+        local Siphoning = Player.Siphoning
+        Siphoning:Destroy()
+        end)
+    end
+})
+
+MySection:CreateButton({
+    Name = "See Invisique People (Hairs are broken)"; -- required: name of element
+    Callback = function() -- required: function to be called when button is pressed
+    
+
+        game:GetService"RunService".RenderStepped:Connect(function()
+
+            local playerchars = game:GetService("Players"):GetPlayers()
+            
+            
+            
+            for i,v in pairs(playerchars) do
+            
+            local Character = v.Character
+            
+                if Character.RightHand.Transparency == 1 then
+                    Character.LeftFoot.Transparency = 0.6
+                    Character.LeftHand.Transparency = 0.6
+                    Character.LeftLowerArm.Transparency = 0.6
+                    Character.LeftUpperArm.Transparency = 0.6
+                    Character.LeftUpperLeg.Transparency = 0.6
+                    Character.LeftLowerLeg.Transparency = 0.6
+                    Character.RightFoot.Transparency = 0.6
+                    Character.RightHand.Transparency = 0.6
+                    Character.RightLowerArm.Transparency = 0.6
+                    Character.RightLowerLeg.Transparency = 0.6
+                    Character.RightUpperArm.Transparency = 0.6
+                    Character.RightUpperLeg.Transparency = 0.6
+                    Character.LowerTorso.Transparency = 0.6
+                    Character.UpperTorso.Transparency = 0.6
+                    Character.Head.Transparency = 0.6
+                    Character.HumanoidRootPart.Transparency = 1
+                    Character.Head.Face.Transparency = 0.6
+            
+                 end
+            end
+            wait()
+            end)
+    end
+})
+
+
+MySection8:CreateToggle({ -- IMPORTANT: This function does not return anything, please modify flags directly in order to read or update toggle values. SCROLL TO BOTTOM OF PAGE TO SEE HOW TO MODIFY FLAGS
+    Name = "Crash Server"; -- required: name of element
+    Flag = "CrashVamp"; -- required: unique flag name to use
+    Default = false; -- optional: default value for toggle, will be used if config saving is disabled and there is no saved data, will be false if left nil
+    Callback = function(newValue) -- optional: function that will be called when toggled, it is reccomended to modify flags directly
+     if newValue == true then
+        _G.crashvamp = true
+    while wait() do
+if _G.crashvamp == true then
+	local Plr = game.Players.LocalPlayer
+
+	for i, Player in pairs (game.Players:GetPlayers()) do
+		if Player.Character ~= nil and Player ~= Plr then
+			local mag = (Player.Character.UpperTorso.Position - Plr.Character.UpperTorso.Position).magnitude
+			if mag < 999999 then
+				local Target = Player.Character or Player.CharacterAdded:Wait()
+				
+	local A_1 = "Heal"
+	local A_2 = 
+		{
+			[1] = Target
+		}
+	local Event = game:GetService("ReplicatedStorage").Events.Vampire
+	Event:FireServer(A_1, A_2)
+	
+	local A_1 = "Heal"
+	local A_2 = 
+		{
+			[1] = Target
+		}
+	local Event = game:GetService("ReplicatedStorage").Events.Vampire
+	Event:FireServer(A_1, A_2)
+
+
+			end
+		end
+	end
+	wait()
+    end
+    end
+    else
+        _G.crashvamp = false
+    end
+    end;
+
+    -- Scroll to the bottom of the page to read more about the following two:
+    Warning = "This has a warning"; -- optional: this argument is used in all elements (except for Body) and will indicate text that will appear when the player hovers over the warning icon
+    WarningIcon = 12345; -- optional: ImageAssetId for warning icon, will only be used if Warning is not nil, default is yellow warning icon.
+})
+
+
+MySection7:CreateButton({
+    Name = "Channel All Server"; -- required: name of element
+    Callback = function() -- required: function to be called when button is pressed
+        local Plr = game.Players.LocalPlayer
+
+        for i, Player in pairs (game.Players:GetPlayers()) do
+            if Player.Character ~= nil and Player ~= Plr then
+                local mag = (Player.Character.UpperTorso.Position - Plr.Character.UpperTorso.Position).magnitude
+                if mag < 999999 then
+                    local Target = Player.Character or Player.CharacterAdded:Wait()
+    
+                    local A_1 = "Magic"
+                    local A_2 = 
+                        {
+                            [1] = "requestChanneling",
+                            [2] = Target
+                        }
+                    local Event = game:GetService("ReplicatedStorage").Events.Witch
+                    Event:FireServer(A_1, A_2)
+                end
+            end
+        end
+    end
+})
+
+MySection:CreateButton({
+    Name = "Anti-Afk"; -- required: name of element
+    Callback = function() -- required: function to be called when button is pressed
+        local vu = game:GetService("VirtualUser")
+        game:GetService("Players").LocalPlayer.Idled:connect(function()
+           vu:Button2Down(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
+           wait(1)
+           vu:Button2Up(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
+        end)
+    end
+})
+
+MySection9:CreateButton({
+    Name = "Feed, Siphon and Heal (Heretic)",
+    Callback = function()
+        local Player = game.Players.LocalPlayer
+	local Character = Player.Character
+
+
+	local A_1 = "Magic"
+	local A_2 = 
+		{
+			[1] = "Invisibility"
+		}
+	local Event = game:GetService("ReplicatedStorage").Events.Witch
+	Event:FireServer(A_1, A_2)
+
+	wait(1)
+
+	for i = 1, 9, 1 do
+
+		local A_1 = "SelfSiphon"
+		local Event = game:GetService("ReplicatedStorage").Events.Witch
+		Event:FireServer(A_1)
+
+	end
+
+	for i = 1, 4, 1 do
+
+		local A_1 = "Feed"
+		local A_2 = 
+			{
+				[1] = Character
+			}
+		local Event = game:GetService("ReplicatedStorage").Events.Vampire
+		Event:FireServer(A_1, A_2)
+
+	end
+
+	wait(4)
+
+
+	local A_1 = "Heal"
+	local A_2 = 
+		{
+			[1] = Character
+		}
+	local Event = game:GetService("ReplicatedStorage").Events.Vampire
+	Event:FireServer(A_1, A_2)
+
+    end
+})
+
+MySection10:CreateButton({
+    Name = "Get Neck-Snap As A Wolf"; -- required: name of element
+    Callback = function() -- required: function to be called when button is pressed
+        local Player = game:GetService("Players").LocalPlayer.Name
+
+        function SCRIPT_JPEX75_FAKESCRIPT()
+        getfenv().script = Instance.new('LocalScript', game:GetService("Workspace").Live[Player]) -- Change this to where you want the LocalScript to be.
+        
+        -- Insert your script here
+        
+        
+        -- Decompiled with the Synapse X Luau decompiler.
+        
+        local l__ReplicatedStorage__1 = game:GetService("ReplicatedStorage");
+        local l__Players__2 = game:GetService("Players");
+        local l__LocalPlayer__3 = l__Players__2.LocalPlayer;
+        local l__Character__4 = l__LocalPlayer__3.Character;
+        local l__Humanoid__5 = l__Character__4:WaitForChild("Humanoid");
+        local l__mouse__1 = l__LocalPlayer__3:GetMouse();
+        local function u2(p1)
+            local l__next__6 = next;
+            local v7, v8 = l__Players__2:GetPlayers();
+            while true do
+                local v9, v10 = l__next__6(v7, v8);
+                if not v9 then
+                    break;
+                end;
+                v8 = v9;
+                if v10.Character and l__mouse__1.Target and l__mouse__1.Target:IsDescendantOf(v10.Character) then
+                    if v10:DistanceFromCharacter(l__Character__4.Head.Position) <= p1 then
+                        return v10;
+                    else
+                        return;
+                    end;
+                end;	
+            end;
+        end;
+        local l__Energy__3 = l__Character__4:WaitForChild("Energy");
+        local u4 = require(l__ReplicatedStorage__1.Check);
+        local u5 = false;
+        local l__Events__6 = l__ReplicatedStorage__1:WaitForChild("Events");
+        game:GetService("UserInputService").InputBegan:Connect(function(p2, p3)
+            if not p3 and p2.KeyCode == Enum.KeyCode.V then
+                local v11 = u2(5);
+                if v11 and not _G.Debounce and l__Energy__3.Value >= 50 and u4(l__Character__4) and u4(v11.Character) and not l__Character__4:FindFirstChild("Acting") and not v11.Character:FindFirstChild("vampReject") then
+                    if l__Character__4:FindFirstChild("Debounce") then
+                        return;
+                    end;
+                    local v12 = Instance.new("BoolValue");
+                    v12.Name = "Debounce";
+                    v12.Parent = l__Character__4;
+                    game:GetService("Debris"):AddItem(v12, 2);
+                    u5 = true;
+                    l__Events__6.Vampire:FireServer("NeckSnap", { v11.Character });
+                    wait(2);
+                    u5 = false;
+                end;
+            end;
+        end);
+        
+        
+        end
+        coroutine.resume(coroutine.create(SCRIPT_JPEX75_FAKESCRIPT))
+        
+        workspace.Live[Player].LocalScript.Name = "NeckSnap" -- If you need to change the name back to the original one.
+        
+    end
+})
+
+MySection7:CreateButton({
+    Name = "Delfan All"; -- required: name of element
+    Callback = function() -- required: function to be called when button is pressed
+        local Plr = game.Players.LocalPlayer
+
+        for i, Player in pairs (game.Players:GetPlayers()) do
+            if Player.Character ~= nil and Player ~= Plr then
+                local mag = (Player.Character.UpperTorso.Position - Plr.Character.UpperTorso.Position).magnitude
+                if mag < 999999 then
+                    local Target = Player.Character or Player.CharacterAdded:Wait()
+    
+                    local A_1 = "Magic"
+                    local A_2 = 
+                        {
+                            [1] = "TelekineticHeart",
+                            [2] = Target
+                        }
+                    local Event = game:GetService("ReplicatedStorage").Events.Witch
+                    Event:FireServer(A_1, A_2)
+    
+    
+                end
+            end
+        end    
+    end
+})
+
+MySection7:CreateButton({
+    Name = "Sleep All"; -- required: name of element
+    Callback = function() -- required: function to be called when button is pressed
+        local Plr = game.Players.LocalPlayer
+
+        for i, Player in pairs (game.Players:GetPlayers()) do
+            if Player.Character ~= nil and Player ~= Plr then
+                local mag = (Player.Character.UpperTorso.Position - Plr.Character.UpperTorso.Position).magnitude
+                if mag < 999999 then
+                    local Target = Player.Character or Player.CharacterAdded:Wait()
+    
+                    local A_1 = "Magic"
+                    local A_2 = 
+                        {
+                            [1] = "SleepSpell",
+                            [2] = Target
+                        }
+                    local Event = game:GetService("ReplicatedStorage").Events.Witch
+                    Event:FireServer(A_1, A_2)
+    
+    
+                end
+            end
+        end
+    end
+})
+
+MySection:CreateButton({
+    Name = "Press to Unragdoll (Get up off the floor)"; -- required: name of element
+    Callback = function() -- required: function to be called when button is pressed
+        local args = {
+            [1] = 1
+        }
+        
+        game:GetService("ReplicatedStorage").Events.FallDamage:FireServer(unpack(args))
+    end
+})
+
+MySection:CreateButton({
+    Name = "Unblur"; -- required: name of element
+    Callback = function() -- required: function to be called when button is pressed
+        game:GetService("Players").LocalPlayer.PlayerGui.Info.Enabled = false
+        game:GetService("Players").LocalPlayer.PlayerGui.Info.ResetOnSpawn = false
+        game:GetService("Lighting").Blur.Enabled = false
+    end
+})
+
+MySection:CreateButton({
+    Name = "Anti-Ban"; -- required: name of element
+    Callback = function() -- required: function to be called when button is pressed
+        local ModBan = game:GetService("ReplicatedStorage").Events:FindFirstChild("ModBan")
+        local BanClient = game:GetService("ReplicatedStorage").Events:FindFirstChild("BanClient")
+        local Ban = game:GetService("ReplicatedStorage").Events:FindFirstChild("Ban")
+        local idontexploit = game:GetService("ReplicatedStorage").Events:FindFirstChild("idontexploit")
+        local logAction = game:GetService("ReplicatedStorage").Events:FindFirstChild("logAction")
+        while game:GetService("Workspace") do wait()
+    if ModBan then
+        ModBan:Destroy()
+    end
+    if BanClient then
+        BanClient:Destroy()
+    end
+    if Ban then
+        Ban:Destroy()
+    end
+    if idontexploit then
+        idontexploit:Destroy()
+    end
+    if logAction then
+        logAction:Destroy()
+    end
+end
+    end
+})
+
+MySection:CreateButton({
+    Name = "Rejoin"; -- required: name of element
+    Callback = function() -- required: function to be called when button is pressed
+        local ts = game:GetService("TeleportService")
+        local p = game:GetService("Players").LocalPlayer
+        
+        
+        ts:Teleport(game.PlaceId, p)
+    end
+})
+
+MySection:CreateButton({
+    Name = "Teleport to The Staff of Arcadius"; -- required: name of element
+    Callback = function() -- required: function to be called when button is pressed
+        local staff = game:GetService("Workspace")["Staff of Arcadius"].Handle
+
+        local currentcframe = game.Players.LocalPlayer.Character.HumanoidRootPart
+        
+        currentcframe.CFrame = staff.CFrame + CFrame.new(0, 2, 0)
+    end
+})
+
+MySection:CreateButton({
+    Name = "Stake All Around You (Must Hold Out Stake)"; -- required: name of element
+    Callback = function() -- required: function to be called when button is pressed
+        local players = workspace.Live
+
+        for _,player in pairs (players:GetChildren()) do
+            local link = game.Players:GetPlayerFromCharacter(player)
+            if player:FindFirstChild("Humanoid") then
+                if  link == game.Players.LocalPlayer then
+                    return
+                else
+                    local A_1 = player
+                    local A_2 = "Original"
+                    local Event = game:GetService("ReplicatedStorage").Events.Stake
+                    Event:FireServer(A_1, A_2)
+                end
+            end
+        end
+    end
+})
+
+MySection:CreateButton({
+    Name = "Respawn As Mortal"; -- required: name of element
+    Callback = function() -- required: function to be called when button is pressed
+        local LocalPlayer = game.Players.LocalPlayer
+        local Character = LocalPlayer.Character
+        local Humanoid = Character.Humanoid
+        local Mouse = LocalPlayer:GetMouse()
+        local Respawn = game:GetService("ReplicatedStorage").Events.Respawn
+        Respawn:FireServer()
+        wait(1)
+        local Morph = game:GetService("ReplicatedStorage").Events.Morph
+        Morph:FireServer("Mortal")
+        wait(0.5)
+local CFrameEnd = CFrame.new(-377.636353, -267.451416, -4889.46582, 0.997956812, -0.0327007547, -0.0548902005, 0.033344958, 0.99938494, 0.0108610736, 0.0545012802, -0.0126692066, 0.998433352) -- Place your coords in here
+local Time = 0.1 -- Time in seconds
+local tween =  game:GetService("TweenService"):Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(Time), {CFrame = CFrameEnd})
+tween:Play()
+tween.Completed:Wait()
+    end
+})
+
+MySection8:CreateButton({
+    Name = "Werewolf Bite as a Vampire [T]"; -- required: name of element
+    Callback = function() -- required: function to be called when button is pressed
+    -- Decompiled with the Synapse X Luau decompiler.
+
+    local l__ReplicatedStorage__1 = game:GetService("ReplicatedStorage");
+    local l__Players__2 = game:GetService("Players");
+    local l__LocalPlayer__3 = l__Players__2.LocalPlayer;
+    local l__Character__4 = l__LocalPlayer__3.Character;
+    local l__mouse__1 = l__LocalPlayer__3:GetMouse();
+    local l__Energy__2 = l__Character__4:WaitForChild("Energy");
+    local u3 = require(l__ReplicatedStorage__1.Check);
+    local u4 = false;
+    local function u5(p1)
+        local l__next__5 = next;
+        local v6, v7 = l__Players__2:GetPlayers();
+        while true do
+            local v8, v9 = l__next__5(v6, v7);
+            if not v8 then
+                break;
+            end;
+            v7 = v8;
+            if v9.Character and l__mouse__1.Target and (l__mouse__1.Target:IsDescendantOf(v9.Character) and v9:DistanceFromCharacter(l__Character__4.Head.Position) <= p1) then
+                return v9;
+            end;	
+        end;
+    end;
+    local l__Events__6 = l__ReplicatedStorage__1:WaitForChild("Events");
+    local l__Humanoid__7 = l__Character__4:WaitForChild("Humanoid");
+    game:GetService("UserInputService").InputBegan:Connect(function(p2, p3)
+        if not p3 and p2.KeyCode == Enum.KeyCode.T and not _G.Debounce and l__Energy__2.Value >= 50 and u3(l__Character__4) and not l__Character__4:FindFirstChild("Acting") and not u4 then
+            u4 = true;
+            _G.Debounce = true;
+            if not l__Character__4:FindFirstChild("Wolf") then
+                local v10 = u5(5);
+                if v10 and u3(v10.Character) then
+                    l__Events__6.Werewolf:FireServer("Bite", { false, v10.Character });
+                else
+                    _G.Debounce = false;
+                    u4 = false;
+                end;
+            else
+                l__Events__6.Werewolf:FireServer("Bite", { true, true });
+                local v11 = l__Character__4.Head.Touched:Connect(function(p4)
+                    local v12 = p4.Parent:FindFirstChild("Humanoid") or p4.Parent.Parent:FindFirstChild("Humanoid");
+                    if v12 and v12 ~= l__Humanoid__7 then
+                        l__Events__6.Werewolf:FireServer("Bite", { true, false, v12 });
+                    end;
+                end);
+                wait(0.5);
+                v11:Disconnect();
+            end;
+            wait(2);
+            _G.Debounce = false;
+            u4 = false;
+        end;
+    end);
+    end
+})
+
+MySection:CreateButton({
+    Name = "Teleport to Cosmix"; -- required: name of element
+    Callback = function() -- required: function to be called when button is pressed
+        local CFrameEnd = CFrame.new(-377.636353, -267.451416, -4889.46582, 0.997956812, -0.0327007547, -0.0548902005, 0.033344958, 0.99938494, 0.0108610736, 0.0545012802, -0.0126692066, 0.998433352) -- Place your coords in here
+        local Time = 0.1 -- Time in seconds
+        local tween =  game:GetService("TweenService"):Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(Time), {CFrame = CFrameEnd})
+        tween:Play()
+        tween.Completed:Wait()
+        -- do whatever you want here after it teleports!
+    end
+})
+
+MySection9:CreateButton({
+    Name = "Siphon All Energy"; -- required: name of element
+    Callback = function() -- required: function to be called when button is pressed
+        local args = {
+            [1] = "SelfSiphon"
+        }
+        
+        game:GetService("ReplicatedStorage").Events.Witch:FireServer(unpack(args))
+
+        local args = {
+            [1] = "SelfSiphon"
+        }
+        
+        game:GetService("ReplicatedStorage").Events.Witch:FireServer(unpack(args))
+
+        local args = {
+            [1] = "SelfSiphon"
+        }
+        
+        game:GetService("ReplicatedStorage").Events.Witch:FireServer(unpack(args))
+
+        local args = {
+            [1] = "SelfSiphon"
+        }
+        
+        game:GetService("ReplicatedStorage").Events.Witch:FireServer(unpack(args))
+
+        local args = {
+            [1] = "SelfSiphon"
+        }
+        
+        game:GetService("ReplicatedStorage").Events.Witch:FireServer(unpack(args))
+        local args = {
+            [1] = "SelfSiphon"
+        }
+        
+        game:GetService("ReplicatedStorage").Events.Witch:FireServer(unpack(args))
+
+        local args = {
+            [1] = "SelfSiphon"
+        }
+        
+        game:GetService("ReplicatedStorage").Events.Witch:FireServer(unpack(args))
+
+        local args = {
+            [1] = "SelfSiphon"
+        }
+        
+        game:GetService("ReplicatedStorage").Events.Witch:FireServer(unpack(args))
+
+        local args = {
+            [1] = "SelfSiphon"
+        }
+        
+        game:GetService("ReplicatedStorage").Events.Witch:FireServer(unpack(args))
+
+        local args = {
+            [1] = "SelfSiphon"
+        }
+        
+        game:GetService("ReplicatedStorage").Events.Witch:FireServer(unpack(args))
+        
+    end
+})
+
+MySection:CreateButton({
+    Name = "Run like a Vampire"; -- required: name of element
+    Callback = function() -- required: function to be called when button is pressed
+        local Player = game:GetService("Players").LocalPlayer.Name
+
+        local className = "BoolValue"
+        local parent = workspace.Live[Player]
+        local part = Instance.new(className, parent)
+        
+        workspace.Live[Player]:WaitForChild("Value").Name = "Vampire"
+    end
+})
+
+MySection:CreateButton({
+    Name = "Run like a Werewolf"; -- required: name of element
+    Callback = function() -- required: function to be called when button is pressed
+        local Player = game:GetService("Players").LocalPlayer.Name
+
+        local className = "BoolValue"
+        local parent = workspace.Live[Player]
+        local part = Instance.new(className, parent)
+        
+        workspace.Live[Player]:WaitForChild("Value").Name = "Werewolf"
+    end
+})
+
+MySection:CreateButton({
+    Name = "Run Normally"; -- required: name of element
+    Callback = function() -- required: function to be called when button is pressed
+        local Player = game:GetService("Players").LocalPlayer.Name
+
+     if workspace.Live[Player]:WaitForChild("Vampire") then
+        workspace.Live[Player]:WaitForChild("Vampire"):Destroy()
+     end
+        wait()
+        if workspace.Live[Player]:WaitForChild("Werewolf") then
+            workspace.Live[Player]:WaitForChild("Werewolf"):Destroy()
+         end
+    end
+})
+
+MySection:CreateButton({
+    Name = "See Ghosts"; -- required: name of element
+    Callback = function() -- required: function to be called when button is pressed
+        local Player = game:GetService("Players").LocalPlayer.Name
+
+        local className = "Folder"
+        local parent = workspace.Live[Player]
+        local part = Instance.new(className, parent)
+        
+        workspace.Live[Player]:WaitForChild("Folder").Name = "SeeGhosts"
+    end
+})
+
+MySection:CreateButton({
+    Name = "Instant Respawn"; -- required: name of element
+    Callback = function() -- required: function to be called when button is pressed
+        game:GetService("ReplicatedStorage").Events.Respawn:FireServer()
+    end
+})
+
+MySection:CreateButton({
+    Name = "Say !re to Respawn"; -- required: name of element
+    Callback = function() -- required: function to be called when button is pressed
+        local Players = game:GetService("Players")
+        local Respawn = game:GetService("ReplicatedStorage").Events.Respawn
+        local function chatted(msg)
+            if msg == "!re" then
+            Respawn:FireServer()
+            end
+        end
+        
+        Players.LocalPlayer.Chatted:Connect(chatted)
+    end
+})
+
+
+
+MySection:CreateButton({
+    Name = "Loopdelete Acting"; -- required: name of element
+    Callback = function() -- required: function to be called when button is pressed
+        local Player = game.Players.LocalPlayer.Name
+        game:GetService"RunService".RenderStepped:Connect(function()
+         local channel = workspace.Live[Player].Acting
+         channel:Destroy()
+            end)
+    end
+})
+
+MySection:CreateButton({
+    Name = "Not affected by Immobilus"; -- required: name of element
+    Callback = function() -- required: function to be called when button is pressed
+        local Player = game.Players.LocalPlayer.Name
+        game:GetService"RunService".RenderStepped:Connect(function()
+            local frozen = workspace.Live[Player].Frozen
+            frozen:Destroy()
+            local A_1 = "Heal"
+            local A_2 = 
+                {
+                    [1] = game:GetService("Players").LocalPlayer.Character
+                }
+            local Event = game:GetService("ReplicatedStorage").Events.Vampire
+            Event:FireServer(A_1, A_2)
+            end)
+        
+        wait()
+        local Player = game.Players.LocalPlayer.Name
+        game:GetService"RunService".RenderStepped:Connect(function()
+            local freezeweld = workspace.Live[Player].freezeWeld
+            freezeweld:Destroy()
+        end)
+        wait()
+            local A_1 = "Heal"
+            local A_2 = 
+                {
+                    [1] = game:GetService("Players").LocalPlayer.Character
+                }
+            local Event = game:GetService("ReplicatedStorage").Events.Vampire
+            Event:FireServer(A_1, A_2)
+    end
+})
+
+MySection:CreateTextBox({
+    Name = "Custom Name"; -- required: name of element
+    Flag = "CustomName"; -- required: unique flag name to use
+    Callback = function(inputtedText,enterPressed) -- function to be called when the textbox's focus is lost
+        -- Script generated by SimpleSpy - credits to exx#9394
+
+local args = {
+    [1] = (inputtedText)
+}
+
+game:GetService("ReplicatedStorage").Events.FilterText:InvokeServer(unpack(args))
+    end;
+    DefaultText = ""; -- required: text that will be in the textbox when there is no configurations saved or config saving is disabled
+    PlaceholderText = "No Text"; -- optional: placeholder text that will show when no text is written
+    ClearTextOnFocus = true; -- optional: whether to clear text when the textbox is focused, default is false
+
+})
+
+MySection2:CreateTextBox({
+    Name = "Username (Heretic)"; -- required: name of element
+    Flag = "UserCrashH"; -- required: unique flag name to use
+    Callback = function(inputtedText,enterPressed) -- function to be called when the textbox's focus is lost
+        local Target = game:GetService("Players"):FindFirstChild(inputtedText).Character
+        local Respawn = game:GetService("ReplicatedStorage").Events.Respawn
+            local A_1 = "Heal"
+            local A_2 = 
+                {
+                    [1] = Target
+                }
+            local Event = game:GetService("ReplicatedStorage").Events.Vampire
+            Event:FireServer(A_1, A_2)
+        
+            wait(0.1)
+        local args = {
+            [1] = "Magic",
+            [2] = {
+                [1] = "Teleport",
+                [2] = Vector3.new(-190, -16.778671264648438, -129.73422241210938)
+            }
+        }
+        
+        game:GetService("ReplicatedStorage").Events.Witch:FireServer(unpack(args))
+        wait(1.25)
+        Respawn:FireServer()
+    end;
+    DefaultText = ""; -- required: text that will be in the textbox when there is no configurations saved or config saving is disabled
+    PlaceholderText = "No Text"; -- optional: placeholder text that will show when no text is written
+    ClearTextOnFocus = true; -- optional: whether to clear text when the textbox is focused, default is false
+    -- Scroll to the bottom of the page to read more about the following two:
+
+})
+
+MySection2:CreateTextBox({
+    Name = "Username (Vampire)"; -- required: name of element
+    Flag = "UserCrashV"; -- required: unique flag name to use
+    Callback = function(inputtedText,enterPressed) -- function to be called when the textbox's focus is lost
+        local Target = game:GetService("Players"):FindFirstChild(inputtedText).Character
+        local Respawn = game:GetService("ReplicatedStorage").Events.Respawn
+        
+        
+        
+        local plr1 = game.Players.LocalPlayer.Character
+        
+        plr1.HumanoidRootPart.CFrame = Target.HumanoidRootPart.CFrame * CFrame.new(0,1,0)
+        wait(0.1)
+                local A_1 = "Feed"
+                local A_2 = 
+                    {
+                        [1] = Target
+                    }
+                local Event = game:GetService("ReplicatedStorage").Events.Vampire
+                Event:FireServer(A_1, A_2)
+                wait(0.5)
+                local A_1 = "Feed"
+                local A_2 = 
+                    {
+                        [1] = Target
+                    }
+                local Event = game:GetService("ReplicatedStorage").Events.Vampire
+                Event:FireServer(A_1, A_2)
+        
+        
+            wait(2)
+            local CFrameEnd = CFrame.new(-377.636353, -267.451416, -4889.46582, 0.997956812, -0.0327007547, -0.0548902005, 0.033344958, 0.99938494, 0.0108610736, 0.0545012802, -0.0126692066, 0.998433352) -- Place your coords in here
+            local Time = 0.1 -- Time in seconds
+            local tween =  game:GetService("TweenService"):Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(Time), {CFrame = CFrameEnd})
+            tween:Play()
+            tween.Completed:Wait()
+        wait(0.25)
+        Respawn:FireServer()
+    end;
+    DefaultText = ""; -- required: text that will be in the textbox when there is no configurations saved or config saving is disabled
+    PlaceholderText = "No Text"; -- optional: placeholder text that will show when no text is written
+    ClearTextOnFocus = true; -- optional: whether to clear text when the textbox is focused, default is false
+    -- Scroll to the bottom of the page to read more about the following two:
+
+})
+
+MySection3:CreateButton({
+    Name = "Original Speed, 200 Stamina"; -- required: name of element
+    Callback = function() -- required: function to be called when button is pressed
+        local Player = game:GetService("Players").LocalPlayer.Name
+
+        local className = "Part"
+        local parent = workspace.Live[Player]
+        local part = Instance.new(className, parent)
+        
+        workspace.Live[Player]:WaitForChild("Part").Name = "Original"
+        local staminaa = game:GetService("Workspace").Live[Player].Stamina.Max
+        staminaa.Value = 200
+        local stamina = staminaa:GetChildren("Stamina")
+        wait(0.5)
+        stamina.Value = 200
+    end
+})
+
+MySection3:CreateButton({
+    Name = "Hestia";
+    Callback = function()
+local Player = game:GetService("Players").LocalPlayer.Name
+
+local className = "BoolValue"
+local parent = workspace.Live[Player]
+local part = Instance.new(className, parent)
+
+workspace.Live[Player]:WaitForChild("Value").Name = "Hestia"
+game:GetService("Workspace").FactionDoors.Hestia.CanCollide = false
+    end
+})
+
+MySection3:CreateButton({
+    Name = "Laveau";
+    Callback = function()
+        local Player = game:GetService("Players").LocalPlayer.Name
+
+        local className = "Part"
+        local parent = workspace.Live[Player]
+        local part = Instance.new(className, parent)
+        
+        workspace.Live[Player]:WaitForChild("Part").Name = "Laveau"
+        game:GetService("Workspace").FactionDoors.Laveau.CanCollide = false
+    end
+})
+
+MySection3:CreateButton({
+    Name = "Astralis";
+    Callback = function()
+        local Player = game:GetService("Players").LocalPlayer.Name
+
+        local className = "BoolValue"
+        local parent = workspace.Live[Player]
+        local part = Instance.new(className, parent)
+        
+        workspace.Live[Player]:WaitForChild("Value").Name = "Astralis"
+        wait(0.1)
+        local Player = game:GetService("Players").LocalPlayer.Name
+        
+        local className = "Folder"
+        local parent = workspace.Live[Player]
+        local part = Instance.new(className, parent)
+        
+        workspace.Live[Player]:WaitForChild("Folder").Name = "SeeGhosts"
+        wait(0.1)
+        local Player = game:GetService("Players").LocalPlayer.Name
+        
+        local className = "NumberValue"
+        local parent = workspace.Live[Player]
+        local part = Instance.new(className, parent)
+        
+        workspace.Live[Player]:WaitForChild("Value").Name = "dmgMultiply"
+        workspace.Live[Player]:WaitForChild("dmgMultiply").Value = 5
+        game:GetService("Workspace").FactionDoors.Astralis.CanCollide = false
+    end
+})
+
+MySection3:CreateButton({
+    Name = "Veraux";
+    Callback = function()
+        local Player = game:GetService("Players").LocalPlayer.Name
+
+        local className = "BoolValue"
+        local parent = workspace.Live[Player]
+        local part = Instance.new(className, parent)
+        
+        workspace.Live[Player]:WaitForChild("Value").Name = "Veraux"
+        wait(0.5)
+        game:GetService("Workspace").herouxBarrier.Transparency = 0.5
+        game:GetService("Workspace").herouxBarrier.CanCollide = false
+        wait(0.5)
+        local Player = game:GetService("Players").LocalPlayer.Name
+        
+        function SCRIPT_JPEX75_FAKESCRIPT()
+        getfenv().script = Instance.new('LocalScript', game:GetService("Workspace").Live[Player]) -- Change this to where you want the LocalScript to be.
+        
+        -- Insert your script here
+        
+        
+        -- Decompiled with the Synapse X Luau decompiler.
+        
+        local l__ReplicatedStorage__1 = game:GetService("ReplicatedStorage");
+        local l__Players__2 = game:GetService("Players");
+        local l__LocalPlayer__3 = l__Players__2.LocalPlayer;
+        local l__Character__4 = l__LocalPlayer__3.Character;
+        local l__Humanoid__5 = l__Character__4:WaitForChild("Humanoid");
+        local l__mouse__1 = l__LocalPlayer__3:GetMouse();
+        local function u2(p1)
+            local l__next__6 = next;
+            local v7, v8 = l__Players__2:GetPlayers();
+            while true do
+                local v9, v10 = l__next__6(v7, v8);
+                if not v9 then
+                    break;
+                end;
+                v8 = v9;
+                if v10.Character and l__mouse__1.Target and (l__mouse__1.Target:IsDescendantOf(v10.Character) and v10:DistanceFromCharacter(l__Character__4.Head.Position) <= p1) then
+                    return v10;
+                end;	
+            end;
+        end;
+        local u3 = false;
+        local l__Energy__4 = l__Character__4:WaitForChild("Energy");
+        local u5 = require(l__ReplicatedStorage__1.Check);
+        local l__Events__6 = l__ReplicatedStorage__1:WaitForChild("Events");
+        game:GetService("UserInputService").InputBegan:Connect(function(p2, p3)
+            if not p3 and p2.KeyCode == Enum.KeyCode.E then
+                local v11 = u2(5);
+                if v11 and not _G.Debounce and not u3 and l__Energy__4.Value >= 0 and u5(l__Character__4) and u5(v11.Character) and not l__Character__4:FindFirstChild("Acting") and not v11.Character:FindFirstChild("vampReject") and (not v11.Character:FindFirstChild("Vampire") or v11.Character:FindFirstChild("Vampire") and (l__Character__4:FindFirstChild("HybridSiring") or l__Character__4:FindFirstChild("Veraux"))) then
+                    u3 = true;
+                    l__Events__6.Vampire:FireServer("Heal", { v11.Character });
+                    wait(7);
+                    u3 = false;
+                end;
+            end;
+        end);
+        
+        
+        end
+        coroutine.resume(coroutine.create(SCRIPT_JPEX75_FAKESCRIPT))
+        
+        workspace.Live[Player].LocalScript.Name = "Heal" -- If you need to change the name back to the original one.
+        game:GetService("Workspace").FactionDoors.Veraux.CanCollide = false
+    end
+})
+
+MySection3:CreateButton({
+    Name = "Triad (All faction areas)";
+    Callback = function()
+        local Player = game:GetService("Players").LocalPlayer.Name
+
+        local className = "Part"
+        local parent = workspace.Live[Player]
+        local part = Instance.new(className, parent)
+        
+        workspace.Live[Player]:WaitForChild("Part").Name = "Triad"
+        game:GetService("Workspace").FactionDoors.Astralis.CanCollide = false
+        game:GetService("Workspace").FactionDoors.Laveau.CanCollide = false
+        game:GetService("Workspace").FactionDoors.Veraux.CanCollide = false
+        game:GetService("Workspace").FactionDoors.Hestia.CanCollide = false
+    end
+})
+
+MySection4:CreateToggle({ -- IMPORTANT: This function does not return anything, please modify flags directly in order to read or update toggle values. SCROLL TO BOTTOM OF PAGE TO SEE HOW TO MODIFY FLAGS
+    Name = "Keybinds"; -- required: name of element
+    Flag = "Keybinds"; -- required: unique flag name to use
+    Default = false; -- optional: default value for toggle, will be used if config saving is disabled and there is no saved data, will be false if left nil
+    Callback = function(newValue) -- optional: function that will be called when toggled, it is reccomended to modify flags directly
+        if newValue == true then
+        _G.keybinds = true
+        else
+            _G.keybinds = false
+        end
+    end;
+})
+
+MySection4:CreateKeybind({
+    Name = "Ultra Fling"; -- required: name of element
+    Flag = "UltraFling"; -- required: unique flag name to use for element
+    Default = "X"; -- required: keycode name that will be used when config saving is disabled or there is no saved configs
+    KeyPressed = function() -- optional: function to be called when the keybind is pressed by their player (handles InputBegan for you basically)
+        if _G.keybinds == true then
+    
+
+
+            local Player = game.Players.LocalPlayer
+            local Character = Player.Character
+            local Humanoid = Character.Humanoid
+            local UserInputService = game:GetService("UserInputService")
+            local mouse = Player:GetMouse()
+            local target = mouse.Target.Parent
+            --local Debounce = true
+            if target.Humanoid then
+                        local Anim = Instance.new("Animation")
+                        Anim.AnimationId = "rbxassetid://4756423861"
+                        local Plr = game.Players.LocalPlayer.Character.Humanoid:LoadAnimation(Anim)
+                        Plr:Play()
+                        Plr:AdjustSpeed()
+                        Plr:Destroy()
+        
+        
+        
+        
+        wait(2)
+        
+        pos = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame -- grabs their CFrame
+        print(pos.x, pos.y, pos.z) -- prints the x, y and z coordinates.
+        local Player = game:GetService("Players").LocalPlayer.Name
+        
+        local className = "BoolValue"
+        local parent = workspace.Live[Player]
+        local part = Instance.new(className, parent)
+        
+        game.Players.LocalPlayer.Character:WaitForChild("Value").Name = "Vampire"
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(mouse.Hit.p)
+        wait(0.25)
+        local args = {
+            [1] = "Push",
+            [2] = {
+                [1] = target
+            }
+        }
+        
+        game:GetService("ReplicatedStorage").Events.Witch:FireServer(unpack(args))
+        wait(0.25)
+        local args = {
+            [1] = "Push",
+            [2] = {
+                [1] = target
+            }
+        }
+        
+        game:GetService("ReplicatedStorage").Events.Witch:FireServer(unpack(args))
+        wait(0.25)
+        local args = {
+            [1] = "Push",
+            [2] = {
+                [1] = target
+            }
+        }
+        
+        game:GetService("ReplicatedStorage").Events.Witch:FireServer(unpack(args))
+        wait(0.1)
+        local args = {
+            [1] = "Push",
+            [2] = {
+                [1] = target
+            }
+        }
+        
+        game:GetService("ReplicatedStorage").Events.Witch:FireServer(unpack(args))
+        game.Players.LocalPlayer.Character:WaitForChild("Vampire"):Destroy()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(pos.x, pos.y, pos.z)
+        
+        
+            end
+        end
+    end;
+})
+
+MySection4:CreateKeybind({
+    Name = "Unragdoll"; -- required: name of element
+    Flag = "Unragdoll"; -- required: unique flag name to use for element
+    Default = "Z"; -- required: keycode name that will be used when config saving is disabled or there is no saved configs
+    KeyPressed = function() -- optional: function to be called when the keybind is pressed by their player (handles InputBegan for you basically)
+        if _G.keybinds == true then
+            local args = {
+                [1] = 1
+            }
+            
+            game:GetService("ReplicatedStorage").Events.FallDamage:FireServer(unpack(args))
+            end
+    end;
+})
+
+MySection4:CreateKeybind({
+    Name = "Incendia"; -- required: name of element
+    Flag = "Incendia"; -- required: unique flag name to use for element
+    Default = "C"; -- required: keycode name that will be used when config saving is disabled or there is no saved configs
+    KeyPressed = function() -- optional: function to be called when the keybind is pressed by their player (handles InputBegan for you basically)
+        if _G.keybinds == true then
+            local Player = game.Players.LocalPlayer
+            local Character = Player.Character
+            local Humanoid = Character.Humanoid
+            local UserInputService = game:GetService("UserInputService")
+            local mouse = Player:GetMouse()
+            local target = mouse.Target.Parent
+            if target.Humanoid then
+            --local Debounce = true
+        local args = {
+            [1] = "Magic",
+            [2] = {
+                [1] = "FireSpell",
+                [2] = target
+            }
+        }
+        
+        game:GetService("ReplicatedStorage").Events.Witch:FireServer(unpack(args))
+        
+        
+
+            end
+        end
+    end;
+})
+
+MySection4:CreateKeybind({
+    Name = "Spam Pain"; -- required: name of element
+    Flag = "SpamPain"; -- required: unique flag name to use for element
+    Default = "G"; -- required: keycode name that will be used when config saving is disabled or there is no saved configs
+    KeyPressed = function() -- optional: function to be called when the keybind is pressed by their player (handles InputBegan for you basically)
+        if _G.keybinds == true then
+            local Player = game.Players.LocalPlayer
+            local Character = Player.Character
+            local Humanoid = Character.Humanoid
+            local UserInputService = game:GetService("UserInputService")
+            local mouse = Player:GetMouse()
+            local target = mouse.Target.Parent
+            if target.Humanoid then
+            --local Debounce = true
+        
+        local args = {
+            [1] = "PainInflict",
+            [2] = {
+                [1] = target,
+                [2] = false
+            }
+        }
+        
+        game:GetService("ReplicatedStorage").Events.Witch:FireServer(unpack(args))
+        
+        
+        
+
+            end
+        end
+    end;
+})
+
+MySection4:CreateKeybind({
+    Name = "Spam Bite"; -- required: name of element
+    Flag = "SpamBite"; -- required: unique flag name to use for element
+    Default = "T"; -- required: keycode name that will be used when config saving is disabled or there is no saved configs
+    KeyPressed = function() -- optional: function to be called when the keybind is pressed by their player (handles InputBegan for you basically)
+        if _G.keybinds == true then
+            local Player = game.Players.LocalPlayer
+            local Character = Player.Character
+            local Humanoid = Character.Humanoid
+            local UserInputService = game:GetService("UserInputService")
+            local mouse = Player:GetMouse()
+            local target = mouse.Target.Parent
+            if target.Humanoid then
+            --local Debounce = true
+        
+        local args = {
+            [1] = "Bite",
+            [2] = {
+                [1] = false,
+                [2] = target
+            }
+        }
+        
+        game:GetService("ReplicatedStorage").Events.Werewolf:FireServer(unpack(args))
+        
+            end
+        end
+    end;
+})
+
+MySection4:CreateKeybind({
+    Name = "Spam Push"; -- required: name of element
+    Flag = "SpamPush"; -- required: unique flag name to use for element
+    Default = "R"; -- required: keycode name that will be used when config saving is disabled or there is no saved configs
+    KeyPressed = function() -- optional: function to be called when the keybind is pressed by their player (handles InputBegan for you basically)
+        if _G.keybinds == true then
+            local Player = game.Players.LocalPlayer
+            local Character = Player.Character
+            local Humanoid = Character.Humanoid
+            local UserInputService = game:GetService("UserInputService")
+            local mouse = Player:GetMouse()
+            local target = mouse.Target.Parent
+            if target.Humanoid then
+            --local Debounce = true
+        
+        local args = {
+            [1] = "Push",
+            [2] = {
+                [1] = target
+            }
+        }
+        
+        game:GetService("ReplicatedStorage").Events.Witch:FireServer(unpack(args))
+        
+        
+            end
+        end
+    end;
+})
+
+MySection4:CreateKeybind({
+    Name = "Delfan"; -- required: name of element
+    Flag = "Delfan"; -- required: unique flag name to use for element
+    Default = "B"; -- required: keycode name that will be used when config saving is disabled or there is no saved configs
+    KeyPressed = function() -- optional: function to be called when the keybind is pressed by their player (handles InputBegan for you basically)
+        if _G.keybinds == true then
+            local Player = game.Players.LocalPlayer
+            local Character = Player.Character
+            local Humanoid = Character.Humanoid
+            local UserInputService = game:GetService("UserInputService")
+            local mouse = Player:GetMouse()
+            local target = mouse.Target.Parent
+            if target.Humanoid then
+        
+        local args = {
+            [1] = "Magic",
+            [2] = {
+                [1] = "TelekineticHeart",
+                [2] = target
+            }
+        }
+        
+        game:GetService("ReplicatedStorage").Events.Witch:FireServer(unpack(args))
+            end
+        end
+    end;
+})
+
+MySection4:CreateKeybind({
+    Name = "Errox Femus"; -- required: name of element
+    Flag = "ErroxFemus"; -- required: unique flag name to use for element
+    Default = "T"; -- required: keycode name that will be used when config saving is disabled or there is no saved configs
+    KeyPressed = function() -- optional: function to be called when the keybind is pressed by their player (handles InputBegan for you basically)
+        if _G.keybinds == true then
+            local Player = game.Players.LocalPlayer
+            local Character = Player.Character
+            local Humanoid = Character.Humanoid
+            local UserInputService = game:GetService("UserInputService")
+            local mouse = Player:GetMouse()
+            local target = mouse.Target.Parent
+            if target.Humanoid then
+            --local Debounce = true
+        
+        local args = {
+            [1] = "Magic",
+            [2] = {
+                [1] = "BreakLeg",
+                [2] = target
+            }
+        }
+        
+        game:GetService("ReplicatedStorage").Events.Witch:FireServer(unpack(args))
+        
+        
+            end
+        end
+    end;
+})
+
+MySection4:CreateKeybind({
+    Name = "Immobilus"; -- required: name of element
+    Flag = "Immobilus"; -- required: unique flag name to use for element
+    Default = "L"; -- required: keycode name that will be used when config saving is disabled or there is no saved configs
+    KeyPressed = function() -- optional: function to be called when the keybind is pressed by their player (handles InputBegan for you basically)
+        if _G.keybinds == true then
+            local Player = game.Players.LocalPlayer
+            local Character = Player.Character
+            local Humanoid = Character.Humanoid
+            local UserInputService = game:GetService("UserInputService")
+            local mouse = Player:GetMouse()
+            local target = mouse.Target.Parent
+            if target.Humanoid then
+            --local Debounce = true
+        
+        local args = {
+            [1] = "Magic",
+            [2] = {
+                [1] = "Freeze",
+                [2] = target
+            }
+        }
+        
+        game:GetService("ReplicatedStorage").Events.Witch:FireServer(unpack(args))
+        
+        
+            end
+        end
+    end;
+})
+
+MySection4:CreateKeybind({
+    Name = "Explode"; -- required: name of element
+    Flag = "Explode"; -- required: unique flag name to use for element
+    Default = "Y"; -- required: keycode name that will be used when config saving is disabled or there is no saved configs
+    KeyPressed = function() -- optional: function to be called when the keybind is pressed by their player (handles InputBegan for you basically)
+        if _G.keybinds == true then
+            local Player = game.Players.LocalPlayer
+            local Character = Player.Character
+            local Humanoid = Character.Humanoid
+            local UserInputService = game:GetService("UserInputService")
+            local mouse = Player:GetMouse()
+            --local Debounce = true
+        
+                    local A_1 = "Magic"
+                    local A_2 = 
+                        {
+                            [1] = "Explosion", 
+                            [2] = mouse.Hit.p
+                        }
+                    local Event = game:GetService("ReplicatedStorage").Events.Witch
+                    Event:FireServer(A_1, A_2)
+                    end
+    end;
+})
+
+MySection5:CreateButton({
+    Name = "LoopDelete Channel";
+    Callback = function()
+        local Player = game.Players.LocalPlayer.Name
+        game:GetService"RunService".RenderStepped:Connect(function()
+        local channela = game:GetService("Workspace").Live[Player].Channeling
+         channela:Destroy()
+        end)
+    end;
+
+})
+
+MySection5:CreateButton({
+    Name = "Delete Channel";
+    Callback = function()
+        local Player = game.Players.LocalPlayer.Name
+        local channel = game:GetService("Workspace").Live[Player].Channeling
+         channel:Destroy()
+    end;
+
+})
+
+MySection5:CreateTextBox({
+    Name = "Auto-Accept Channel (User)"; -- required: name of element
+    Flag = "AutoAcceptChannel"; -- required: unique flag name to use
+    Callback = function(inputtedText,enterPressed) -- function to be called when the textbox's focus is lost
+        -- Script generated by SimpleSpy - credits to exx#9394
+
+        while true do
+            local args = {
+                [1] = "Channel",
+                [2] = {
+                    [1] = true,
+                    [2] = game.Players[(inputtedText)].Character
+                }
+            }
+            
+            game:GetService("ReplicatedStorage").Events.Witch:FireServer(unpack(args))
+            wait(1)
+            local args = {
+                [1] = "Channel",
+                [2] = {
+                    [1] = true,
+                    [2] = game.Players[(inputtedText)].Character
+                }
+            }
+            
+            game:GetService("ReplicatedStorage").Events.Witch:FireServer(unpack(args))
+            wait(1)
+            end
+    end;
+    DefaultText = ""; -- required: text that will be in the textbox when there is no configurations saved or config saving is disabled
+    PlaceholderText = "No Text"; -- optional: placeholder text that will show when no text is written
+    ClearTextOnFocus = true; -- optional: whether to clear text when the textbox is focused, default is false
+
+})
+
+MySection5:CreateTextBox({
+    Name = "Auto Send Channel (Input User)"; -- required: name of element
+    Flag = "AutoSendChannel"; -- required: unique flag name to use
+    Callback = function(inputtedText,enterPressed) -- function to be called when the textbox's focus is lost
+        -- Script generated by SimpleSpy - credits to exx#9394
+
+        while true do
+            local args = {
+                [1] = "Magic",
+                [2] = {
+                    [1] = "requestChanneling",
+                    [2] = game.Players[(inputtedText)].Character
+                }
+            }
+            
+            game:GetService("ReplicatedStorage").Events.Witch:FireServer(unpack(args))
+            wait(1)
+            local args = {
+                [1] = "Magic",
+                [2] = {
+                    [1] = "requestChanneling",
+                    [2] = game.Players[(inputtedText)].Character
+                }
+            }
+            
+            game:GetService("ReplicatedStorage").Events.Witch:FireServer(unpack(args))
+            wait(1)
+            end
+    end;
+    DefaultText = ""; -- required: text that will be in the textbox when there is no configurations saved or config saving is disabled
+    PlaceholderText = "No Text"; -- optional: placeholder text that will show when no text is written
+    ClearTextOnFocus = true; -- optional: whether to clear text when the textbox is focused, default is false
+
+})
+
+
+
+MySection6:CreateButton({
+    Name = "Movement";
+    Callback = function()
+        game.Players.LocalPlayer.Character.disableMovement:Destroy()
+    end
+
+})
+
+MySection6:CreateButton({
+    Name = "Siphon";
+    Callback = function()
+        game.Players.LocalPlayer.Character.disableSiphon:Destroy()
+    end
+
+})
+
+MySection6:CreateButton({
+    Name = "Feed";
+    Callback = function()
+        game.Players.LocalPlayer.Character.disableFeeding:Destroy()
+    end
+
+})
+
+MySection6:CreateButton({
+    Name = "Punch";
+    Callback = function()
+        game.Players.LocalPlayer.Character.disablePunching:Destroy()
+    end
+
+})
+
+MySection6:CreateButton({
+    Name = "Magic";
+    Callback = function()
+        game.Players.LocalPlayer.Character.disableMagic:Destroy()
+    end
+
+})
+
+MySection6:CreateButton({
+    Name = "LoopDelete Werewolf Venom";
+    Callback = function()
+        local Player = game.Players.LocalPlayer
+        local Character = Player.Character
+        local Humanoid = Character.Humanoid
+        while wait() do
+        local Bite = Character:WaitForChild("WerewolfVenom")
+        Bite:Destroy()
+    end
+    end
+
+})
+
+MySection7:CreateButton({
+    Name = "Witch Immortality";
+    Callback = function()
+        local Player = game.Players.LocalPlayer.Name
+        local comm = workspace.Live[Player].Immortality.Comm
+        comm:Destroy()
+    end
+})
+
+MySection7:CreateButton({
+    Name = "Buff WitchPowers"; -- required: name of element
+    Callback = function() -- required: function to be called when button is pressed
+        local character = game.Players.LocalPlayer.Character
+        function SCRIPT_JPEX75_FAKESCRIPT()
+        getfenv().script = Instance.new('LocalScript', character.WitchPowers)
+            -- Decompiled with the Synapse X Luau decompiler.
+        
+        local l__UserInputService__1 = game:GetService("UserInputService");
+        local l__ReplicatedStorage__2 = game:GetService("ReplicatedStorage");
+        local l__Events__3 = l__ReplicatedStorage__2:WaitForChild("Events");
+        local l__Players__4 = game:GetService("Players");
+        local l__LocalPlayer__5 = l__Players__4.LocalPlayer;
+        local l__Character__6 = l__LocalPlayer__5.Character;
+        local v7 = require(l__ReplicatedStorage__2.targetCheck);
+        local l__mouse__1 = l__LocalPlayer__5:GetMouse();
+        local u2 = nil;
+        local l__Humanoid__3 = l__Character__6:WaitForChild("Humanoid");
+        local l__Magic__4 = l__Character__6:WaitForChild("Magic");
+        local l__Value__5 = l__Character__6:WaitForChild("CharacterName").Value;
+        local u6 = {};
+        local l__Witch__7 = l__ReplicatedStorage__2.Events.Witch;
+        l__LocalPlayer__5.Chatted:Connect(function(p1)
+            p1 = string.lower(p1);
+            if u2 == "LocatorSpell" then
+                u2 = nil;
+                local l__next__8 = next;
+                local v9, v10 = workspace.Live:GetChildren();
+                while true do
+                    local v11, v12 = l__next__8(v9, v10);
+                    if not v11 then
+                        break;
+                    end;
+                    v10 = v11;
+                    if v12:FindFirstChild("CharacterName") and string.lower(v12.CharacterName.Value) == p1 and v12 ~= l__Character__6 then
+                        game.Lighting.Locator.Enabled = true;
+                        workspace.CurrentCamera.CameraSubject = v12.Humanoid;
+                        wait(3);
+                        workspace.CurrentCamera.CameraSubject = l__Humanoid__3;
+                        game.Lighting.Locator.Enabled = false;
+                        return;
+                    end;		
+                end;
+                return;
+            end;
+            if string.find(p1, "ossox") then
+                u2 = "SnapNeck";
+                return;
+            end;
+            if string.find(p1, "menedek qual suurentaa") then
+                u2 = "SnapAll";
+                return;
+            end;
+            if string.find(p1, "phasmatos incendia movet") then
+                u2 = "SirenSpell";
+                return;
+            end;
+            if string.find(p1, "immobilus") then
+                u2 = "Freeze";
+                return;
+            end;
+            if string.find(p1, "regelo") then
+                u2 = "Unfreeze";
+                return;
+            end;
+            if string.find(p1, "phasmatos morsinus pyrox allum") then
+                u2 = "AdvancedInflict";
+                return;
+            end;
+            if string.find(p1, "ad somnum") then
+                u2 = "SleepSpell";
+                return;
+            end;
+            if string.find(p1, "motus") then
+                u2 = "Motus";
+                return;
+            end;
+            if string.find(p1, "phasmatos incendia circulum") then
+                u2 = "FireCircle";
+                return;
+            end;
+            if string.find(p1, "namia exum solvos") then
+                u2 = "NoFire";
+                return;
+            end;
+            if string.find(p1, "bruciare supe terram, faciendo ignis ga praemium") then
+                u2 = "Explosion";
+                return;
+            end;
+            if string.find(p1, "errox femus") then
+                u2 = "BreakLeg";
+                return;
+            end;
+            if string.find(p1, "phasmatos tribum, valls partum circulum") then
+                u2 = "CreateRing";
+                return;
+            end;
+            if string.find(p1, "phasmatos tribum, incendiamos mota") then
+                u2 = "EnableRing";
+                return;
+            end;
+            if string.find(p1, "phasmatos tribum, vectus incendias malos") then
+                u2 = "DisableRing";
+                return;
+            end;
+            if string.find(p1, "incendia") then
+                u2 = "FireSpell";
+                return;
+            end;
+            if string.find(p1, "otum adnarvet esnavit atim") then
+                u2 = "Seal";
+                return;
+            end;
+            if string.find(p1, "merabas hic libatal") then
+                u2 = "Unseal";
+                return;
+            end;
+            if string.find(p1, "invisique") then
+                u2 = "Invisibility";
+                return;
+            end;
+            if string.find(p1, "delfan eoten cor") and l__Magic__4.Max.Value >= 300 then
+                u2 = "TelekineticHeart";
+                return;
+            end;
+            if not string.find(p1, "um du varis") or l__Value__5 ~= "Qetsiyah" and l__Value__5 ~= "Theodore" and l__Value__5 ~= "Clarabelle" and l__Value__5 ~= "Apollo" then
+                if string.find(p1, "ah sha lana") and (l__Value__5 == "Qetsiyah" or l__Value__5 == "Theodore" or l__Value__5 == "Clarabelle" or l__Value__5 == "Vanessa" or l__Value__5 == "Apollo") then
+                    u2 = "AhShaLana";
+                    return;
+                elseif string.find(p1, "gurka") and l__LocalPlayer__5.Name == "Vazorio" then
+                    u2 = "TribridSpell";
+                    return;
+                elseif string.find(p1, "channel") then
+                    u2 = "Channeling";
+                    return;
+                elseif string.find(p1, "phasmatos lacus") then
+                    u2 = "Teleport";
+                    return;
+                elseif string.find(p1, "mori") and (l__Value__5 == "Theodore" or l__Value__5 == "Vanessa") then
+                    u2 = "Mori";
+                    return;
+                elseif string.find(p1, "phasmatos extandas lomiano") then
+                    u2 = "VervainBody";
+                    return;
+                elseif string.find(p1, "lecutio") and (l__Value__5 == "Theodore" or l__Value__5 == "Hope" or l__Value__5 == "Vanessa" or l__Value__5 == "Apollo") then
+                    u2 = "LightningSpell";
+                    return;
+                elseif string.find(p1, "silencio") then
+                    u2 = "Silence";
+                    return;
+                elseif string.find(p1, "ignis agitur") and (l__Value__5 == "Hope" or l__Value__5 == "Freya" or l__Value__5 == "Qetsiyah" or l__Value__5 == "Bonnie" or l__Value__5 == "Valerie" or l__Value__5 == "Nora" or l__Value__5 == "Mary" or l__Value__5 == "Vanessa" or l__Value__5 == "Theodore") then
+                    u2 = "BurnStake";
+                    return;
+                elseif string.find(p1, "cordia resitit") and (l__Value__5 == "Qetsiyah" or l__Value__5 == "Theodore" or l__Value__5 == "Vanessa" or l__Value__5 == "Apollo") then
+                    u2 = "StopHeart";
+                    return;
+                elseif string.find(p1, "ah sha lana del ray vesta") and l__Value__5 == "Ana" then
+                    u2 = "AnaSpell";
+                    return;
+                elseif string.find(p1, "phasmatos tribum, nas ex veras, sequitas sanguinem") and l__Magic__4.Value >= 250 then
+                    if not u6[u2] then
+                        u2 = "LocatorSpell";
+                        l__Witch__7:FireServer("Magic", { "Locate" });
+                        local v13 = 10;
+                        u6[u2] = true;
+                        while true do
+                            wait(1);
+                            v13 = v13 - 1;
+                            if v13 == 0 then
+                                break;
+                            end;
+                            if u2 ~= "LocatorSpell" then
+                                break;
+                            end;				
+                        end;
+                        if u2 == "LocatorSpell" and v13 == 0 then
+                            u2 = nil;
+                        end;
+                        wait(30);
+                        u6[u2] = false;
+                        return;
+                    else
+                        return;
+                    end;
+                elseif string.find(p1, "phasmatos tribum, valls partum luna circulum") and l__Magic__4.Value >= 250 and (l__Value__5 == "Freya" or l__Value__5 == "Hope" or l__Value__5 == "Qetsiyah" or not (not l__Character__6:FindFirstChild("Deveraux")) or l__Value__5 == "Bonnie" or l__Value__5 == "Genevieve" or l__Value__5 == "Apollo" or l__Character__6:FindFirstChild("Astralis") and l__LocalPlayer__5.groupData.Rank.Value >= 3) then
+                    u2 = "MoonRing";
+                    return;
+                elseif string.find(p1, "phasmatos tribum, vectus lunas malos") and l__Magic__4.Value >= 100 and (l__Value__5 == "Freya" or l__Value__5 == "Hope" or l__Value__5 == "Qetsiyah" or not (not l__Character__6:FindFirstChild("Deveraux")) or l__Value__5 == "Bonnie" or l__Value__5 == "Genevieve" or l__Value__5 == "Apollo" or l__Character__6:FindFirstChild("Astralis") and l__LocalPlayer__5.groupData.Rank.Value >= 3) then
+                    u2 = "DisableMoonRing";
+                    return;
+                elseif string.find(p1, "phasmatos tribum, lunamos mota") and l__Magic__4.Value >= 100 and (l__Value__5 == "Freya" or l__Value__5 == "Hope" or l__Value__5 == "Qetsiyah" or not (not l__Character__6:FindFirstChild("Deveraux")) or l__Value__5 == "Bonnie" or l__Value__5 == "Genevieve" or l__Value__5 == "Apollo" or l__Character__6:FindFirstChild("Astralis") and l__LocalPlayer__5.groupData.Rank.Value >= 3) then
+                    u2 = "EnableMoonRing";
+                    return;
+                else
+                    if string.find(p1, "bloodchoke") then
+                        if l__Magic__4.Value >= 200 and l__Value__5 == "Davina" then
+                            u2 = "BloodChoke";
+                        else
+                            return;
+                        end;
+                    end;
+                    return;
+                end;
+            end;
+            u2 = "Magic";
+        end);
+        local function u8()
+            local l__next__14 = next;
+            local v15, v16 = l__Players__4:GetPlayers();
+            while true do
+                local v17, v18 = l__next__14(v15, v16);
+                if not v17 then
+                    break;
+                end;
+                v16 = v17;
+                if v18.Character and l__mouse__1.Target and l__mouse__1.Target:IsDescendantOf(v18.Character) then
+                    return v18;
+                end;	
+            end;
+        end;
+        local u9 = l__Humanoid__3:LoadAnimation(l__Character__6.Animations.Magic);
+        local function u10(p2, p3)
+            local l__Position__19 = p2.HumanoidRootPart.Position;
+            local l__Position__20 = p3.HumanoidRootPart.Position;
+            p2.HumanoidRootPart.CFrame = CFrame.new(l__Position__19, Vector3.new(l__Position__20.X, l__Position__19.Y, l__Position__20.Z));
+        end;
+        l__mouse__1.Button1Down:Connect(function()
+            if v7(l__Character__6) and not l__Character__6:FindFirstChild("Acting") and u2 and not u6[u2] and not l__Character__6:FindFirstChild("disableMagic") then
+                local l__Target__21 = l__mouse__1.Target;
+                local v22 = u8();
+                if v22 and v22.Character then
+                    if l__Character__6:FindFirstChild("Guard") and (v22.Character:FindFirstChild("Guard") and l__LocalPlayer__5.UserId ~= 74042464 and l__LocalPlayer__5.UserId ~= 1679530344 and l__LocalPlayer__5.UserId ~= 77667489 and l__LocalPlayer__5.UserId ~= 1117976342 and u2 ~= "Channeling") then
+                        return;
+                    end;
+                    local v23 = v22:DistanceFromCharacter(l__Character__6.Head.Position);
+                    if u2 == "SnapNeck" and v7(v22.Character) then
+                        if v23 <= 30 and l__Magic__4.Value >= 50 and (v22.Character:FindFirstChild("Vampire") or l__Character__6:FindFirstChild("Laveau") and (not v22.Character:FindFirstChild("Laveau") and v22.Character.CharacterName.Value ~= "Qetsiyah" and v22.Character.CharacterName.Value ~= "Sybil")) then
+                            u6[u2] = true;
+                            u2 = nil;
+                            l__Witch__7:FireServer("Magic", { "SnapNeck", v22.Character });
+                            wait(10);
+                            u6[u2] = false;
+                        end;
+                    elseif u2 == "Freeze" and v7(v22.Character) then
+                        if v23 <= 20 and l__Magic__4.Value >= 80 then
+                            u6[u2] = true;
+                            u2 = nil;
+                            u9:Play();
+                            l__Witch__7:FireServer("Magic", { "Freeze", v22.Character });
+                            task.wait(25);
+                            u6[u2] = false;
+                        end;
+                    elseif u2 == "Unfreeze" then
+                        if v23 <= 20 and l__Magic__4.Value >= 80 then
+                            u6[u2] = true;
+                            u2 = nil;
+                            u9:Play();
+                            l__Witch__7:FireServer("Magic", { "Unfreeze", v22.Character });
+                            task.wait(25);
+                            u6[u2] = false;
+                        end;
+                    elseif u2 == "BurnStake" and v7(v22.Character) then
+                        if v23 <= 20 and l__Magic__4.Value >= 400 then
+                            if not v22.Backpack:FindFirstChild("Wooden Stake") and not v22.Backpack:FindFirstChild("White Oak Stake") and not v22.Character:FindFirstChild("Wooden Stake") then
+                                local l__White_Oak_Stake__24 = v22.Character:FindFirstChild("White Oak Stake");
+                            end;
+                            u6[u2] = true;
+                            u2 = nil;
+                            u9:Play();
+                            l__Witch__7:FireServer("Magic", { "BurnStake", v22.Character });
+                            task.wait(120);
+                            u6[u2] = false;
+                        end;
+                    elseif u2 == "SleepSpell" and v7(v22.Character) then
+                        if v23 <= 20 and l__Magic__4.Value >= 30 then
+                            u6[u2] = true;
+                            u2 = nil;
+                            l__Witch__7:FireServer("Magic", { "SleepSpell", v22.Character });
+                            wait(10);
+                            u6[u2] = false;
+                        end;
+                    elseif u2 == "Silence" and v7(v22.Character) then
+                        if v23 <= 20 and l__Magic__4.Value >= 100 then
+                            u6[u2] = true;
+                            u2 = nil;
+                            u9:Play();
+                            l__Witch__7:FireServer("Magic", { "Silence", v22.Character });
+                            wait(40);
+                            u6[u2] = false;
+                        end;
+                    elseif u2 == "FireCircle" and v7(v22.Character) then
+                        if v23 <= 50 and l__Magic__4.Value >= 70 then
+                            u6[u2] = true;
+                            u2 = nil;
+                            u10(l__Character__6, v22.Character);
+                            l__Witch__7:FireServer("Magic", { "FireCircle", v22.Character });
+                            wait(10);
+                            u6[u2] = false;
+                        end;
+                    elseif u2 == "FireSpell" then
+                        if v23 <= 20 and l__Magic__4.Value >= 40 then
+                            if v22.Character.Humanoid.ragdoll.Value then
+                                return;
+                            end;
+                            u6[u2] = true;
+                            u2 = nil;
+                            u9:Play();
+                            l__Witch__7:FireServer("Magic", { "FireSpell", v22.Character });
+                            wait(10);
+                            u6[u2] = false;
+                        end;
+                    elseif u2 == "BreakLeg" then
+                        if v23 <= 20 and l__Magic__4.Value >= 50 and ((v22.Character:FindFirstChild("Vampire") or v22.Character:FindFirstChild("Werewolf")) and not v22.Character:FindFirstChild("ErroxFemus")) then
+                            u6[u2] = true;
+                            u2 = nil;
+                            u9:Play();
+                            l__Witch__7:FireServer("Magic", { "BreakLeg", v22.Character });
+                            wait(25);
+                            u6[u2] = false;
+                        end;
+                    elseif u2 == "StopHeart" then
+                        if v23 <= 20 and l__Magic__4.Value >= 500 and v22.Character.CharacterName.Value ~= "Qetsiyah" then
+                            u6[u2] = true;
+                            u2 = nil;
+                            u9:Play();
+                            l__Witch__7:FireServer("Magic", { "StopHeart", v22.Character });
+                            wait(60);
+                            u6[u2] = false;
+                        end;
+                    elseif u2 == "CreateRing" then
+                        if v23 <= 20 and l__Magic__4.Value >= 100 and v22.Character:FindFirstChild("Vampire") and not v22.Character:FindFirstChild("Werewolf") and not v22.Character:FindFirstChild("Witch") and not v22.Character:FindFirstChild("HasRing") then
+                            u6[u2] = true;
+                            u2 = nil;
+                            u9:Play();
+                            l__Witch__7:FireServer("Magic", { "CreateRing", v22.Character });
+                            wait(5);
+                            u6[u2] = false;
+                        end;
+                    elseif u2 == "EnableRing" then
+                        if v23 <= 20 and l__Magic__4.Value >= 100 and v22.Character:FindFirstChild("HasRing") then
+                            local l__Ring__25 = v22.Character:FindFirstChild("Ring");
+                            if l__Ring__25 and not l__Ring__25.Active.Value then
+                                u6[u2] = true;
+                                u2 = nil;
+                                u9:Play();
+                                l__Witch__7:FireServer("Magic", { "EnableRing", v22.Character });
+                                wait(5);
+                                u6[u2] = false;
+                            end;
+                        end;
+                    elseif u2 == "DisableRing" then
+                        if v23 <= 20 and l__Magic__4.Value >= 100 and v22.Character:FindFirstChild("HasRing") then
+                            local l__Ring__26 = v22.Character:FindFirstChild("Ring");
+                            if l__Ring__26 and l__Ring__26.Active.Value then
+                                u6[u2] = true;
+                                u2 = nil;
+                                u9:Play();
+                                l__Witch__7:FireServer("Magic", { "DisableRing", v22.Character });
+                                wait(5);
+                                u6[u2] = false;
+                            end;
+                        end;
+                    elseif u2 == "TelekineticHeart" then
+                        if v23 <= 20 and l__Magic__4.Value >= 200 then
+                            u6[u2] = true;
+                            u2 = nil;
+                            u9:Play();
+                            l__Witch__7:FireServer("Magic", { "TelekineticHeart", v22.Character });
+                            wait(20);
+                            u6[u2] = false;
+                        end;
+                    elseif u2 == "BloodChoke" then
+                        if v23 <= 20 and l__Magic__4.Value >= 200 then
+                            u6[u2] = true;
+                            u2 = nil;
+                            l__Witch__7:FireServer("Magic", { "BloodChoke", v22.Character });
+                            wait(20);
+                            u6[u2] = false;
+                        end;
+                    elseif u2 == "MagicVenom" then
+                        if v23 <= 20 and l__Magic__4.Value >= 50 and not v22.Character:FindFirstChild("WerewolfVenom") then
+                            if not v22.Character:FindFirstChild("Werewolf") then
+                                if v22.Character:FindFirstChild("Vampire") and v7(v22.Character) then
+                                    u6[u2] = true;
+                                    u2 = nil;
+                                    u9:Play();
+                                    l__Witch__7:FireServer("Magic", { "MagicVenom", v22.Character });
+                                    wait(1);
+                                    u6[u2] = false;
+                                end;
+                            elseif v7(v22.Character) then
+                                u6[u2] = true;
+                                u2 = nil;
+                                u9:Play();
+                                l__Witch__7:FireServer("Magic", { "MagicVenom", v22.Character });
+                                wait(1);
+                                u6[u2] = false;
+                            end;
+                        end;
+                    elseif u2 == "TribridSpell" then
+                        if v23 <= 23422342340 then
+                            u6[u2] = true;
+                            u2 = nil;
+                            u9:Play();
+                            l__Witch__7:FireServer("Magic", { "TribridSpell", v22.Character });
+                            wait(1);
+                            u6[u2] = false;
+                        end;
+                    elseif u2 == "Channeling" and not v22.Character:FindFirstChild("Channeling") and not v22.Character:FindFirstChild("requestingChanneling") and (not l__LocalPlayer__5.PlayerGui:FindFirstChild("channelRequest") and not l__Character__6:FindFirstChild("Channeling") and not l__Character__6:FindFirstChild("requestingChanneling")) and (v22.Character:FindFirstChild("Magic") or v22.Character:FindFirstChild("Energy")) then
+                        if v23 <= 7 then
+                            u6[u2] = true;
+                            u2 = nil;
+                            u9:Play();
+                            l__Witch__7:FireServer("Magic", { "requestChanneling", v22.Character });
+                            wait(10);
+                            u6[u2] = false;
+                        end;
+                    elseif u2 == "Mori" and v22 then
+                        if v23 <= 30 then
+                            u2 = nil;
+                            u9:Play();
+                            l__Witch__7:FireServer("Magic", { "Mori", v22.Character });
+                        end;
+                    elseif u2 == "MoonRing" and v22 then
+                        if v23 <= 20 and not v22.Character:FindFirstChild("moonRing") and v22.Character:FindFirstChild("Werewolf") and (not v22.Character:FindFirstChild("Vampire") and l__Magic__4.Value >= 250) then
+                            u2 = nil;
+                            u9:Play();
+                            l__Witch__7:FireServer("Magic", { "MoonRing", v22.Character });
+                        end;
+                    elseif u2 == "DisableMoonRing" and v22 then
+                        if v23 <= 20 and (v22.Character:FindFirstChild("moonRing") and v22.Character.moonRing.Active.Value and l__Magic__4.Value >= 100) then
+                            u2 = nil;
+                            u9:Play();
+                            l__Witch__7:FireServer("Magic", { "DisableMoonRing", v22.Character });
+                        end;
+                    elseif u2 == "EnableMoonRing" and v22 then
+                        if v23 <= 20 and (v22.Character:FindFirstChild("moonRing") and not v22.Character.moonRing.Active.Value and l__Magic__4.Value >= 100) then
+                            u2 = nil;
+                            u9:Play();
+                            l__Witch__7:FireServer("Magic", { "EnableMoonRing", v22.Character });
+                        end;
+                    elseif u2 == "LightningSpell" and v22 and v23 <= 15 and l__Magic__4.Value >= 100 then
+                        u6[u2] = true;
+                        u2 = nil;
+                        l__Events__3.LightningSpell:FireServer("newLightning", { v22.Character });
+                        task.wait(15);
+                        u6[u2] = false;
+                    end;
+                end;
+                if u2 == "SnapAll" then
+                    if l__Magic__4.Value >= 100 then
+                        u6[u2] = true;
+                        u2 = nil;
+                        u9:Play();
+                        l__Witch__7:FireServer("Magic", { "SnapAll" });
+                        wait(10);
+                        u6[u2] = false;
+                        return;
+                    end;
+                elseif u2 == "AdvancedInflict" then
+                    if l__Magic__4.Value >= 150 then
+                        u6[u2] = true;
+                        u2 = nil;
+                        l__Witch__7:FireServer("Magic", { "AdvancedInflict" });
+                        wait(10);
+                        u6[u2] = false;
+                        return;
+                    end;
+                elseif u2 == "NoFire" and l__Magic__4.Value >= 100 and l__Target__21 then
+                    if (l__mouse__1.Hit.p - l__Character__6.Head.Position).Magnitude < 30 then
+                        if l__Target__21.Parent.Name == "FireBoundary" or l__Target__21.Parent.Name == "RitualRing" or v22 then
+                            u6[u2] = true;
+                            u2 = nil;
+                            u9:Play();
+                            if not v22 then
+                                local v27 = l__Target__21.Parent;
+                            else
+                                v27 = v22.Character;
+                            end;
+                            l__Witch__7:FireServer("Magic", { "NoFire", v27 });
+                            wait(10);
+                            u6[u2] = false;
+                            return;
+                        end;
+                    elseif v22 then
+                        u6[u2] = true;
+                        u2 = nil;
+                        u9:Play();
+                        if not v22 then
+                            v27 = l__Target__21.Parent;
+                        else
+                            v27 = v22.Character;
+                        end;
+                        l__Witch__7:FireServer("Magic", { "NoFire", v27 });
+                        wait(10);
+                        u6[u2] = false;
+                        return;
+                    end;
+                elseif u2 == "Explosion" and l__Magic__4.Value >= 170 and l__Target__21 then
+                    if (l__mouse__1.Hit.p - l__Character__6.Head.Position).Magnitude < 30 then
+                        u6[u2] = true;
+                        u2 = nil;
+                        u9:Play();
+                        l__Witch__7:FireServer("Magic", { "Explosion", l__mouse__1.Hit.p });
+                        wait(10);
+                        u6[u2] = false;
+                        return;
+                    end;
+                else
+                    if u2 == "Invisibility" and l__Magic__4.Value >= 50 then
+                        u6[u2] = true;
+                        u2 = nil;
+                        u9:Play();
+                        l__Witch__7:FireServer("Magic", { "Invisibility" });
+                        wait(13);
+                        u6[u2] = false;
+                        return;
+                    end;
+                    if u2 == "AhShaLana" and l__Magic__4.Value >= 200 then
+                        u6[u2] = true;
+                        u2 = nil;
+                        l__Witch__7:FireServer("Magic", { "AhShaLana" });
+                        wait(13);
+                        u6[u2] = false;
+                        return;
+                    end;
+                    if u2 == "Teleport" and l__mouse__1.Target and (l__mouse__1.Hit.p - l__Character__6.HumanoidRootPart.Position).Magnitude <= l__Magic__4.Value * 2 then
+                        u6[u2] = true;
+                        if not l__mouse__1.Target:IsDescendantOf(workspace.AntiTp) and l__mouse__1.Target.Name ~= "WitchArea" and l__mouse__1.Target.CanCollide then
+                            u2 = nil;
+                            u9:Play();
+                            l__Witch__7:FireServer("Magic", { "Teleport", l__mouse__1.Hit.p });
+                            wait(15);
+                        end;
+                        u6[u2] = false;
+                        return;
+                    end;
+                    if u2 == "Motus" then
+                        if l__Magic__4.Value >= 40 then
+                            u6[u2] = true;
+                            local v28 = l__Target__21.Parent:FindFirstChild("deathClone") or l__Target__21.Parent.Parent:FindFirstChild("deathClone");
+                            if v28 then
+                                l__Witch__7:FireServer("Magic", { "Motus", true, v28.Parent });
+                            else
+                                l__Witch__7:FireServer("Magic", { "Motus", false });
+                            end;
+                            u2 = nil;
+                            wait(10);
+                            u6[u2] = false;
+                            return;
+                        end;
+                    elseif u2 == "Seal" then
+                        if l__Magic__4.Value >= 100 then
+                            u6[u2] = true;
+                            l__Witch__7:FireServer("Magic", { "Seal" });
+                            u9:Play();
+                            u2 = nil;
+                            wait(10);
+                            u6[u2] = false;
+                            return;
+                        end;
+                    elseif u2 == "Unseal" then
+                        if l__Magic__4.Value >= 100 then
+                            u6[u2] = true;
+                            l__Witch__7:FireServer("Magic", { "Unseal" });
+                            u9:Play();
+                            u2 = nil;
+                            wait(10);
+                            u6[u2] = false;
+                            return;
+                        end;
+                    elseif u2 == "VervainBody" then
+                        if v22 then
+                            if v7(v22.Character) and not v22.Character:FindFirstChild("VervainBody") then
+                                u6[u2] = true;
+                                u2 = nil;
+                                u9:Play();
+                                l__Witch__7:FireServer("Magic", { "VervainBody", v22.Character });
+                                wait(20);
+                                u6[u2] = false;
+                                return;
+                            end;
+                        elseif v7(l__Character__6) and not l__Character__6:FindFirstChild("VervainBody") then
+                            u6[u2] = true;
+                            u2 = nil;
+                            l__Witch__7:FireServer("Magic", { "VervainBody", l__Character__6 });
+                            wait(60);
+                            u6[u2] = false;
+                        end;
+                    end;
+                end;
+            end;
+        end);
+        end
+        coroutine.resume(coroutine.create(SCRIPT_JPEX75_FAKESCRIPT))
+        
+        character.WitchPowers.LocalScript.Name = "Magic"
+    end
+})
+
+MySection7:CreateButton({
+    Name = "Buff Pain Infliction"; -- required: name of element
+    Callback = function() -- required: function to be called when button is pressed
+     -- Decompiled with the Synapse X Luau decompiler.
+
+local l__ReplicatedStorage__1 = game:GetService("ReplicatedStorage");
+local l__Players__2 = game:GetService("Players");
+local l__LocalPlayer__3 = l__Players__2.LocalPlayer;
+local l__Character__4 = l__LocalPlayer__3.Character;
+local l__Humanoid__5 = l__Character__4:WaitForChild("Humanoid");
+local l__mouse__1 = l__LocalPlayer__3:GetMouse();
+local function u2(p1)
+	local l__next__6 = next;
+	local v7, v8 = l__Players__2:GetPlayers();
+	while true do
+		local v9, v10 = l__next__6(v7, v8);
+		if not v9 then
+			break;
+		end;
+		v8 = v9;
+		if v10.Character and l__mouse__1.Target and l__mouse__1.Target:IsDescendantOf(v10.Character) then
+			if v10:DistanceFromCharacter(l__Character__4.Head.Position) <= p1 then
+				return v10;
+			else
+				return;
+			end;
+		end;	
+	end;
+end;
+local u3 = false;
+local u4 = require(l__ReplicatedStorage__1.Check);
+local l__Magic__5 = l__Character__4:WaitForChild("Magic");
+local l__Events__6 = l__ReplicatedStorage__1:WaitForChild("Events");
+local u7 = false;
+game:GetService("UserInputService").InputBegan:Connect(function(p2, p3)
+	if not p3 and not l__Character__4:FindFirstChild("disableMagic") then
+		if p2.KeyCode == Enum.KeyCode.G then
+			local v11 = u2(15);
+			if v11 and not u3 and u4(l__Character__4) and u4(v11.Character) and not l__Character__4:FindFirstChild("Acting") and l__Magic__5.Value >= 1 then
+				if l__Character__4:FindFirstChild("Guard") and (v11.Character:FindFirstChild("Guard") and l__LocalPlayer__3.UserId ~= 74042464 and l__LocalPlayer__3.UserId ~= 1679530344 and l__LocalPlayer__3.UserId ~= 77667489 and l__LocalPlayer__3.UserId ~= 1117976342) then
+					return;
+				else
+					u3 = true;
+					if v11.Character:FindFirstChild("PainInfliction") then
+						l__Events__6.Witch:FireServer("PainInflict", { v11.Character, true });
+					else
+						l__Events__6.Witch:FireServer("PainInflict", { v11.Character, false });
+					end;
+					wait(2);
+					u3 = false;
+					return;
+				end;
+			end;
+		elseif (p2.KeyCode == Enum.KeyCode.Zero or p2.KeyCode == Enum.KeyCode.KeypadZero) and not u7 and (not workspace.AntiTp:FindFirstChild("protectionBall") and l__Character__4:FindFirstChild("wRing")) then
+			u7 = true;
+			l__Events__6.Witch:FireServer("Protection");
+			while true do
+				wait(1);
+				if workspace.AntiTp:FindFirstChild("protectionBall") then
+					break;
+				end;			
+			end;
+			while true do
+				wait(1);
+				if not workspace.AntiTp:FindFirstChild("protectionBall") then
+					break;
+				end;			
+			end;
+			wait(30);
+			u7 = false;
+	    	end;
+	    end;
+    end);
+    end
+})
+
+
+MySection8:CreateButton({
+    Name = "Vampire Immortality"; -- required: name of element
+    Callback = function() -- required: function to be called when button is pressed
+        while true do
+            local args = {
+                [1] = false
+            }
+    
+            game:GetService("Players").LocalPlayer.Character.BurnInSun.Control:FireServer(unpack(args))
+            wait()
+        end
+    end
+})
+
+MySection9:CreateButton({
+    Name = "Turned Heretic Immortality";
+    Callback = function()
+        local Player = game.Players.LocalPlayer.Name
+        local comm = workspace.Live[Player].Immortality.Comm
+        comm:Destroy()
+    end
+})
+
+local MyParagraph = MySection10:CreateParagraph("This Immortality needs you to be healed before you press the button")
+local MyParagraph = MySection10:CreateParagraph("You are only immortal to snaps and dying normally. (Rips will kill you.)")
+MySection10:CreateButton({
+    Name = "Semi Immortality";
+    Callback = function()
+        local Player = game.Players.LocalPlayer.Name
+        local comm = workspace.Live[Player].activateTurning
+        comm:Destroy()
+    end
+})
+
